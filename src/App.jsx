@@ -3,13 +3,20 @@ import "./App.css";
 import { MovieContextProvider } from "./components/context/MovieDataContext";
 import MainPage from "./pages/MainPage";
 import MovieDetail from "./pages/MovieDetail";
+import Layout from "./components/Layout";
+import LoginPage from "./pages/LoginPage";
+import SignUpPage from "./pages/SignUpPage";
 
 function App() {
   return (
     <MovieContextProvider>
       <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route path="details" element={<MovieDetail />} />
+        <Route path="/" element={<Layout />}>
+          <Route index element={<MainPage />} />
+          <Route path=":movieId" element={<MovieDetail />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignUpPage />} />
+        </Route>
       </Routes>
     </MovieContextProvider>
   );

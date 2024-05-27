@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  @apply flex flex-col items-center;
+}
+
+#root {
+  @apply w-full max-w-screen-2xl;
+}
+
+li {
+  list-style: none;
+}
+
+input {
+  outline: none;
+  border-radius: 10px;
+}

@@ -1,25 +1,23 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import axios from "../../api/axios";
+import requests from "../../api/request";
 
 const MovieContext = createContext();
 
 export function MovieContextProvider({ children }) {
   const [movies, setMovies] = useState([]);
-  const [movieDetails, setMovieDetails] = useState({});
 
   useEffect(() => {
-    fetch("data/movieListData.json")
-      .then((res) => res.json())
-      .then((result) => setMovies(result.results));
+    fetchMovieLists();
   }, []);
 
-  const fetchMovieDetails = () => {
-    fetch(`data/movieDetailData.json`)
-      .then((res) => res.json())
-      .then((result) => setMovieDetails(result));
+  const fetchMovieLists = async () => {
+    const res = await axios.get(requests.fetchPopularMovies);
+    setMovies(res.data.results);
   };
 
   return (
-    <MovieContext.Provider value={{ movies, movieDetails, fetchMovieDetails }}>
+    <MovieContext.Provider value={{ movies, fetchMovieLists }}>
       {children}
     </MovieContext.Provider>
   );

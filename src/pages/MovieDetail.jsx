@@ -1,14 +1,24 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { imageBasePath } from "../../constants";
-import { useMovieContext } from "../components/context/MovieDataContext";
+import { useParams } from "react-router-dom";
+
+import axios from "../api/axios";
 
 export default function MovieDetail() {
-  const { movieDetails, fetchMovieDetails } = useMovieContext();
+  const { movieId } = useParams();
+  const [movieDetails, setMovieDetails] = useState({});
+
+  const fetchMovieDetails = async () => {
+    const res = await axios.get(`movie/${movieId}`);
+    setMovieDetails(res.data);
+  };
   console.log(movieDetails);
 
   useEffect(() => {
-    fetchMovieDetails();
-  }, []);
+    if (movieId) {
+      fetchMovieDetails();
+    }
+  }, [movieId]);
 
   const { poster_path, overview, title, vote_average, genres } = movieDetails;
   console.log(genres);
