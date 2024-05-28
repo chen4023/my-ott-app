@@ -6,6 +6,7 @@ const MovieContext = createContext();
 
 export function MovieContextProvider({ children }) {
   const [movies, setMovies] = useState([]);
+  const [searchResult, setSearchResults] = useState([]);
 
   useEffect(() => {
     fetchMovieLists();
@@ -16,8 +17,21 @@ export function MovieContextProvider({ children }) {
     setMovies(res.data.results);
   };
 
+  const fetchSearchMovie = async (searchTerm) => {
+    try {
+      const res = await axios.get(
+        `/search/multi?include_adult=false&query=${searchTerm}`
+      );
+      setSearchResults(res.data.results);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
-    <MovieContext.Provider value={{ movies, fetchMovieLists }}>
+    <MovieContext.Provider
+      value={{ movies, fetchMovieLists, fetchSearchMovie, searchResult }}
+    >
       {children}
     </MovieContext.Provider>
   );
