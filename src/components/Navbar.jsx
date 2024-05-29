@@ -74,12 +74,12 @@ export default function Navbar() {
           <>
             <span
               onClick={() => navigate("/login")}
-              className="border border-brand text-brand px-4 py-2 text-sm rounded-md mr-3"
+              className="border border-brand text-brand px-4 py-2 text-sm rounded-md mr-2  hover:bg-brand hover:text-white"
             >
               로그인
             </span>
             <span
-              className="bg-brand text-white px-3 py-[9px] text-sm rounded-md"
+              className="border border-brand text-brand px-3 py-2 text-sm rounded-md hover:bg-brand hover:text-white"
               onClick={() => navigate("/signup")}
             >
               회원가입
