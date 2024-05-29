@@ -29,9 +29,9 @@ export default function MovieDetail() {
         alt={title}
       />
       <div className="flex flex-col items-center">
-        <div className="flex flex-col items-center mb-3 lg:flex-row">
+        <div className="flex flex-col items-center mb-3">
           <p className="text-4xl font-bold mr-5">{title}</p>
-          <p className="text-lg font-medium">평균 {vote_average}</p>
+          <p className="text-lg font-medium">평점 {vote_average}</p>
         </div>
         <div className="grid grid-flow-col">
           {genres &&
