@@ -43,14 +43,14 @@ export default function LoginPage() {
         required
         {...email}
         type="email"
-        className="border w-[400px] mb-4 h-12 text-lg px-3"
+        className="border w-[400px] mb-4 h-12 text-lg px-3 dark:bg-transparent"
         placeholder="이메일을 입력하세요."
       />
       <input
         required
         {...password}
         type="password"
-        className="border w-[400px] mb-8 h-12 text-lg px-3"
+        className="border w-[400px] mb-8 h-12 text-lg px-3 dark:bg-transparent"
         placeholder=" 비밀번호를 입력하세요."
       />
 

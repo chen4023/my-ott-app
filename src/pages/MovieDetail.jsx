@@ -22,7 +22,7 @@ export default function MovieDetail() {
 
   const { poster_path, overview, title, vote_average, genres } = movieDetails;
   return (
-    <div className="w-full flex flex-col justify-center items-center p-4 lg:flex-row lg:items-start">
+    <div className="w-[80%] flex flex-col justify-center items-center p-5 lg:flex-row lg:items-start bg-gray-100 dark:bg-[#1d1d1d] rounded-md">
       <img
         className="rounded-md mb-3 h-[60vh] lg:h-[80vh]"
         src={`${imageBasePath}${poster_path}`}
@@ -31,7 +31,9 @@ export default function MovieDetail() {
       <div className="flex flex-col items-center">
         <div className="flex flex-col items-center mb-3">
           <p className="text-4xl font-bold mr-5">{title}</p>
-          <p className="text-lg font-medium">평점 {vote_average}</p>
+          <p className="text-lg font-medium">
+            평점 {vote_average && vote_average.toFixed(1)}
+          </p>
         </div>
         <div className="grid grid-flow-col">
           {genres &&

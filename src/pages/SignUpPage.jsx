@@ -56,7 +56,7 @@ export default function SignUpPage() {
           required
           {...name}
           type="text"
-          className="border w-full h-12 text-lg px-3"
+          className="border w-full h-12 text-lg px-3 dark:bg-transparent"
           placeholder="이름을 입력하세요."
         />
       </div>
@@ -65,7 +65,7 @@ export default function SignUpPage() {
           required
           {...email}
           type="email"
-          className="border w-full h-12 text-lg px-3"
+          className="border w-full h-12 text-lg px-3 dark:bg-transparent"
           placeholder="이메일을 입력하세요."
         />
         {email.error && (
@@ -79,7 +79,7 @@ export default function SignUpPage() {
           required
           {...password}
           type="password"
-          className="border w-full h-12 text-lg px-3"
+          className="border w-full h-12 text-lg px-3 dark:bg-transparent"
           placeholder="비밀번호를 입력하세요."
         />
         {password.error && (
@@ -93,7 +93,7 @@ export default function SignUpPage() {
           {...passwordConfirm}
           required
           type="password"
-          className="border w-full h-12 text-lg px-3"
+          className="border w-full h-12 text-lg px-3 dark:bg-transparent"
           placeholder="비밀번호를 확인하세요."
         />
         {passwordConfirm.error && (
