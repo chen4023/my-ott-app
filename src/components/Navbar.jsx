@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useMovieContext } from "./context/MovieDataContext";
 import useDebounce from "../hooks/useDebounce";
 import { onUserState } from "../api/firebase";
@@ -14,6 +14,7 @@ export default function Navbar() {
   const { fetchSearchMovie } = useMovieContext();
 
   const [isOpen, setIsOpen] = useState(false);
+  const dropMenuRef = useRef(null);
   const [user, setUser] = useState({});
   const [isSearch, setIsSearch] = useState(false);
   const [searchValue, setSearchValue] = useState("");
@@ -29,6 +30,16 @@ export default function Navbar() {
       fetchSearchMovie(debounceValue);
     }
   }, [debounceValue, fetchSearchMovie]);
+
+  useEffect(() => {
+    const handleOutsideClose = (e) => {
+      // useRef current에 담긴 엘리먼트 바깥을 클릭 시 드롭메뉴 닫힘
+      if (isOpen && !dropMenuRef.current.contains(e.target)) setIsOpen(false);
+    };
+    document.addEventListener("click", handleOutsideClose);
+
+    return () => document.removeEventListener("click", handleOutsideClose);
+  }, [isOpen]);
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -54,7 +65,7 @@ export default function Navbar() {
       >
         🎬 FlickHive
       </div>
-      <div className="flex items-center cursor-pointer">
+      <div ref={dropMenuRef} className="flex items-center cursor-pointer">
         {isSearch && (
           <input
             type="text"
