@@ -22,7 +22,7 @@ export default function MovieDetail() {
 
   const { poster_path, overview, title, vote_average, genres } = movieDetails;
   return (
-    <div className="w-[80%] flex flex-col justify-center items-center p-5 lg:flex-row lg:items-start bg-gray-100 dark:bg-[#1d1d1d] rounded-md">
+    <div className="w-[90%] flex flex-col justify-center items-center p-10 lg:flex-row lg:items-start bg-gray-50 dark:bg-[#1d1d1d] rounded-md">
       <img
         className="rounded-md mb-3 h-[60vh] lg:h-[80vh]"
         src={`${imageBasePath}${poster_path}`}

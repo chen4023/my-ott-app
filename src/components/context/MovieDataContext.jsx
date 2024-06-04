@@ -6,15 +6,22 @@ const MovieContext = createContext();
 
 export function MovieContextProvider({ children }) {
   const [movies, setMovies] = useState([]);
+  const [nowMovies, setNowMovies] = useState([]);
   const [searchResult, setSearchResults] = useState([]);
 
   useEffect(() => {
     fetchMovieLists();
+    fetchNowPlayingList();
   }, []);
 
   const fetchMovieLists = async () => {
     const res = await axios.get(requests.fetchPopularMovies);
     setMovies(res.data.results);
+  };
+
+  const fetchNowPlayingList = async () => {
+    const res = await axios.get(requests.fetchNowPlayingMovies);
+    setNowMovies(res.data.results);
   };
 
   const fetchSearchMovie = async (searchTerm) => {
@@ -30,7 +37,14 @@ export function MovieContextProvider({ children }) {
 
   return (
     <MovieContext.Provider
-      value={{ movies, fetchMovieLists, fetchSearchMovie, searchResult }}
+      value={{
+        movies,
+        nowMovies,
+        fetchMovieLists,
+        fetchSearchMovie,
+        fetchNowPlayingList,
+        searchResult,
+      }}
     >
       {children}
     </MovieContext.Provider>
